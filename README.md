@@ -34,4 +34,4 @@ After initial set up with Chat Engine, I set up server configurations. The tools
 - axios
 Once initial server is set up, I set up OpenAI to introduce GPT-3.5 into my application. I started by configuring openAI to my server. I then introduced Axios to inside of my routes file to call the openAI api from node. 
 
-After setting up initial routes in the backend, I went back to client to set up redux and redux toolkit to simplify boilerplate code that lets me manage state and make store api calls in our global store in a simple and straightforward way.
+After setting up initial routes in the backend, I went back to client to set up redux and redux toolkit to simplify boilerplate code that manages state and stores api calls in our global store in a simple and straightforward way. I proceeded to set up slices that will make api calls to my backend and then set up store in my main client index file. After creating the hook in my API slice file, I can now use the hook to make an API call in a new component in a Ai.jsx file.
