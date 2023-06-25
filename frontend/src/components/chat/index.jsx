@@ -8,7 +8,7 @@ import Header from "../customHeader";
 import StandardMessageForm from "../customMessageForms/StandardMessageForm";
 import Ai from "../customMessageForms/Ai";
 import AiCode from "../customMessageForms/AiCode";
-import AiComplete from "../customMessageForms/AiCode";
+import AiComplete from "../customMessageForms/AiComplete";
 
 const projectId = process.env.REACT_APP_PROJECT_ID;
 const username = process.env.REACT_APP_USER_NAME;

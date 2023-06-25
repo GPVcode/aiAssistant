@@ -76,7 +76,7 @@ router.post("/code", async (req, res) => {
 
 router.post("/autoComplete", async (req, res) => {
   try {
-    const { text, activeChatId } = req.body;
+    const { text } = req.body;
 
     const response = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
@@ -85,19 +85,6 @@ router.post("/autoComplete", async (req, res) => {
         { role: "user", content: `Finish my thought: ${text}` }, // message from user
       ],
     });
-
-    // handle Submit in the backend
-    // automatically paste info from OpenAI to chat engine
-    await axios.post(
-      `https://api.chatengine.io/chats/${activeChatId}/messages/`,
-      { text: response.data.choices[0].message.content },
-      {
-        headers: {
-          "Project-ID": process.env.PROJECT_ID,
-          "User-Name": process.env.BOT_USER_NAME,
-          "User-Secret": process.env.BOT_USER_SECRET,
-        },
-      });
 
     res.status(200).json({ text: response.data.choices[0].message.content });
   } catch (error) {
