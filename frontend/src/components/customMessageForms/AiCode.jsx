@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import MessageFormUI from './MessageFormUI';
-import { usePostAiTextMutation } from '../../state/api';
+import { usePostAiCodeMutation } from '../../state/api';
 
-const Ai = ({ props, activeChat }) => {
+const AiCode = ({ props, activeChat }) => {
   
   const [message, setMessage] = useState("");
   const [attachment, setAttachment] = useState("");
-  const [trigger] = usePostAiTextMutation();
+  const [triggerCode] = usePostAiCodeMutation();
 
   const handleChange = (e) => setMessage(e.target.value);
 
@@ -27,10 +27,11 @@ const Ai = ({ props, activeChat }) => {
       text: message,
       activeChatId: activeChat.id,
     } 
+
     // API req to submit text to chat engine
     props.onSubmit(form);
     // API req to trigger response from OpenAi
-    trigger(form);
+    triggerCode(form);
     setMessage("");
     setAttachment("");
   };
@@ -47,4 +48,4 @@ const Ai = ({ props, activeChat }) => {
   )
 }
 
-export default Ai;
+export default AiCode;

@@ -4,7 +4,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const api = createApi({ 
     baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_BASE_URL}),
-    reducerPath: "main", // name of slice
+    reducerPath: "index", // name of slice
     tagTypes: [],
     endpoints: (build) => ({
         // query call we'll use to make api request to backend routes
@@ -16,9 +16,25 @@ export const api = createApi({
                 body: payload, // send body of payload to backend
             }),
         }),
+        postAiCode: build.mutation({
+            query: (payload) => ({
+                url: "openai/code",
+                method: "POST",
+                body: payload, 
+            }),
+        }),
+        postAiComplete: build.mutation({
+            query: (payload) => ({
+                url: "openai/autoComplete", 
+                method: "POST",
+                body: payload,
+            }),
+        }),
     }),
 });
 
 export const {
-    usePostAiTextMutation
+    usePostAiTextMutation,
+    usePostAiCodeMutation,
+    usePostAiCompleteMutation
 } = api;

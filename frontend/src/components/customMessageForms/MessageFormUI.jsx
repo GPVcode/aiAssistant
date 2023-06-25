@@ -6,7 +6,7 @@ import {
   import React, { useState } from 'react';
   import Dropzone from "react-dropzone";
 
-const MessageFormUI = ({ setAttachment, setMessage, handleChange, handleSubmit}) => {
+const MessageFormUI = ({ setAttachment, message, handleChange, handleSubmit}) => {
 
     const [ preview, setPreview ] = useState('');
     
@@ -39,7 +39,7 @@ const MessageFormUI = ({ setAttachment, setMessage, handleChange, handleSubmit})
                 <input 
                     className='message-form-input'
                     type='text'
-                    value={setMessage}
+                    value={message}
                     onChange={handleChange}
                     placeholder='Send a message...'
                 />

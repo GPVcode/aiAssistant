@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "MERN aiChatbot",
+  "description": "Ai Assistant",
   "type": "module",
   "main": "server.js",
   "scripts": {

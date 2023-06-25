@@ -1,17 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MessageFormUI from './MessageFormUI';
-import { usePostAiTextMutation } from '../../state/api';
+import { usePostAiCompleteMutation } from '../../state/api';
 
-const Ai = ({ props, activeChat }) => {
+function useDebounce(value, delay) {
+  const [ debouncedValue, setDebouncedValue ] = useState(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+    return () => {
+      clearTimeout(handler);
+    }
+  }, [value, delay])
+
+  return debouncedValue
+}
+const AiComplete = ({ props, activeChat }) => {
   
   const [message, setMessage] = useState("");
   const [attachment, setAttachment] = useState("");
-  const [trigger] = usePostAiTextMutation();
+  const [triggerComplete] = usePostAiCompleteMutation();
 
   const handleChange = (e) => setMessage(e.target.value);
 
   const handleSubmit = async () => {
-    // Manually formatting date properly with SIOString
+    // Manually formatting date properly with ISOString
     const date = new Date()
       .toISOString()
       .replace("T", " ")
@@ -27,13 +41,14 @@ const Ai = ({ props, activeChat }) => {
       text: message,
       activeChatId: activeChat.id,
     } 
+
     // API req to submit text to chat engine
     props.onSubmit(form);
-    // API req to trigger response from OpenAi
-    trigger(form);
     setMessage("");
     setAttachment("");
   };
+
+  const debouncedValue = useDebounce(message, 1000);
 
   return (
     <div>
@@ -47,4 +62,4 @@ const Ai = ({ props, activeChat }) => {
   )
 }
 
-export default Ai;
+export default AiComplete;

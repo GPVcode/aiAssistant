@@ -2,7 +2,7 @@ import React from 'react'
 import { ChatBubbleBottomCenterTextIcon, PhoneIcon } from "@heroicons/react/24/solid";
 
 const Header = ({ chat }) => {
-  console.log("header chat", chat.description)
+
   return (
     <div className='chat-header'>
       <div className='flexbetween'>

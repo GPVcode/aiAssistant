@@ -5,7 +5,10 @@ import {
 } from "react-chat-engine-advanced";
 import Header from "../customHeader";
 // for ai generated responses
-import StandardMessageForm from "../customMessageForms/StandardMessageForm"
+import StandardMessageForm from "../customMessageForms/StandardMessageForm";
+import Ai from "../customMessageForms/Ai";
+import AiCode from "../customMessageForms/AiCode";
+import AiComplete from "../customMessageForms/AiCode";
 
 const projectId = process.env.REACT_APP_PROJECT_ID;
 const username = process.env.REACT_APP_USER_NAME;
@@ -26,6 +29,18 @@ const Chat = () => {
         style={{ height: "100vh" }}
         renderChatHeader={(chat) => <Header chat={chat} /> }
         renderMessageForm={(props) => {
+          // render AI component if chatroom starts with AiChat
+          if(chatProps.chat?.title.startsWith("AiAssistant")){
+            return <Ai props={props} activeChat={chatProps.chat} />
+          }
+          // render AI component that responds with strictly code
+          if(chatProps.chat?.title.startsWith("AiCodeAssistant")){
+            return <AiCode props={props} activeChat={chatProps.chat} />
+          }
+          // render autocompletion AI component
+          if(chatProps.chat?.title.startsWith("AiAutoComplete")){
+            return <AiComplete props={props} activeChat={chatProps.chat} />
+          }
           return (
               <StandardMessageForm props={props} activeChat={chatProps.chat} />
           )

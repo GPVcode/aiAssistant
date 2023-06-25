@@ -24,9 +24,11 @@ app.use(cors());
 // OPEN AI CONFIG
 const configuration = new Configuration({
     organization: "org-yqmJkAFryC45q7GGyyXJXKvD",
-    apiKey: process.env.OPEN_AI_SECRET_KEY,
+    apiKey: process.env.OPEN_API_KEY,
 });
-  // will use this data in a sep route file
+
+
+// will use this data in a sep route file
 export const openai = new OpenAIApi(configuration);
 
 // ROUTES
@@ -34,5 +36,5 @@ app.use('/openai', openAIRoutes);
 
 // SERVER SETUP
 app.listen(process.env.PORT, () => {
-    console.log("Lcdistening on PORT", process.env.PORT || 9000);
+    console.log("Listening on PORT", process.env.PORT || 9000);
 })
