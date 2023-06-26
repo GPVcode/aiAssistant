@@ -1,7 +1,8 @@
 import { 
   useMultiChatLogic,
   MultiChatSocket,
-  MultiChatWindow
+  MultiChatWindow,
+  
 } from "react-chat-engine-advanced";
 import Header from "../customHeader";
 // for ai generated responses
@@ -11,17 +12,15 @@ import AiCode from "../customMessageForms/AiCode";
 import AiComplete from "../customMessageForms/AiComplete";
 
 const projectId = process.env.REACT_APP_PROJECT_ID;
-const username = process.env.REACT_APP_USER_NAME;
-const secret = process.env.REACT_APP_USER_SECRET;
 
-const Chat = () => {
+const Chat = ({ user, secret }) => {
 
-  const chatProps = useMultiChatLogic(projectId, username, secret)
+  const chatProps = useMultiChatLogic(projectId, user, secret)
 
   return (
 
     <div style={{ flexBasis: "100%" }}>
-      {/* Logic with creating and styling components */}      
+      {/* Logic with creating and styling compo nents */}      
       <MultiChatWindow 
 
         {...chatProps}

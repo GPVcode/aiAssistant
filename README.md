@@ -38,3 +38,7 @@ After setting up initial routes in the backend, I went back to client to set up 
 Next, I set up openAI in my routers and connected the would be response from OpenAI to ChatEngine so that it would show up in message list from the Bot user. I named my bot after my dog Quest. 
 
 After successfully hooking up OpenAI to Chat Engine, I can now implement different variations of AI in different chat rooms. 
+
+After implementing different variations for different chatrooms, I will set up user authorization and authentication. I first set up mutations for login and sign up. Then I set up the login and signup components. After setting up the components, I set up the logic for which components will be renders based on user's login status.
+
+Once the frontend components are established, I went in the backend to set up my routes.
